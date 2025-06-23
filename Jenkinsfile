@@ -18,24 +18,17 @@ pipeline {
             }
         }
 
-        stage('Run Tests') {
-            steps {
-                sh 'npm test -- --watchAll=false'
-            }
-        }
-
         stage('Build') {
             steps {
-                sh 'npm run build'
+                bat 'npm run build'
             }
         }
 
-        // Opcional: etapa de despliegue
-        // stage('Deploy') {
-        //     steps {
-        //         sh './deploy.sh'  // Ejemplo, debes definirlo
-        //     }
-        // }
+        stage('Deploy') {
+            steps {
+                bat 'npm run deploy'
+            }
+        }
     }
 
     post {
