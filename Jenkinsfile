@@ -23,12 +23,6 @@ pipeline {
                 bat 'set "NODE_OPTIONS=--openssl-legacy-provider" && npm run build' //cambios en nodejs +17
             }
         }
-
-        stage('Deploy') {
-            steps {
-                bat 'npm run deploy'
-            }
-        }
     }
 
     post {
