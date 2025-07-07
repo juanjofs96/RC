@@ -23,6 +23,24 @@ pipeline {
                 bat 'set "NODE_OPTIONS=--openssl-legacy-provider" && npm run build' //cambios en nodejs +17
             }
         }
+
+        stage('Lint') {
+            steps {
+                bat 'npm run lint'    // verificacion de código con herramienta lint
+            }
+        }
+
+        stage('Test') {
+            steps {
+                bat 'npm test'          // para ejecutar pruebas unitarias
+            }
+        }
+
+        stage('Archive Artifacts') {
+            steps {
+                archiveArtifacts artifacts: 'build/**', fingerprint: true         // ideal para guardar resultados y luego integrar en otras etapas (despliegue por ejemplo)
+            }
+        }
     }
 
     post {
