@@ -5,6 +5,10 @@ pipeline {
         nodejs 'Node 18'  // Asegúrate de tenerlo configurado en Jenkins: Manage Jenkins > Global Tool Configuration
     }
 
+    triggers {
+        githubPush() // <-- Ejecuta el pipeline automáticamente en cada push (requiere webhook)
+    }
+    
     stages {
         stage('Checkout') {
             steps {
